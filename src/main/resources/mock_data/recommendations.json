@@ -1,0 +1,30 @@
+[
+  {
+    "id": "recommendation_track_id_1",
+    "name": "Recommendation Track 1",
+    "durationMs": 200000,
+    "album": {
+      "name": "Recommendation Album 1",
+      "images": [
+        {
+          "url": "https://via.placeholder.com/128"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/recommendation_album_id_1"
+      }
+    },
+    "artists": [
+      {
+        "name": "Recommendation Artist 1",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/recommendation_artist_id_1"
+        }
+      }
+    ],
+    "external_urls": {
+      "spotify": "https://open.spotify.com/track/recommendation_track_id_1"
+    },
+    "previewUrl": "https://via.placeholder.com/150"
+  }
+]

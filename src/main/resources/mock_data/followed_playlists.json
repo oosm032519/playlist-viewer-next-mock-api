@@ -1,0 +1,38 @@
+[
+  {
+    "id": "followed_playlist_id_1",
+    "name": "Followed Playlist 1",
+    "tracks": {
+      "total": 5
+    },
+    "images": [
+      {
+        "url": "https://via.placeholder.com/128"
+      }
+    ],
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/followed_playlist_id_1"
+    },
+    "owner": {
+      "display_name": "Followed User 1"
+    }
+  },
+  {
+    "id": "followed_playlist_id_2",
+    "name": "Followed Playlist 2",
+    "tracks": {
+      "total": 10
+    },
+    "images": [
+      {
+        "url": "https://via.placeholder.com/128"
+      }
+    ],
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/followed_playlist_id_2"
+    },
+    "owner": {
+      "display_name": "Followed User 2"
+    }
+  }
+]

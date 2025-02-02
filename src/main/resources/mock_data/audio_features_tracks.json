@@ -1,0 +1,34 @@
+[
+  {
+    "acousticness": 0.1,
+    "danceability": 0.2,
+    "energy": 0.3,
+    "instrumentalness": 0.4,
+    "liveness": 0.5,
+    "loudness": -60.0,
+    "mode": 1,
+    "speechiness": 0.6,
+    "tempo": 100.0,
+    "timeSignature": 4,
+    "valence": 0.7,
+    "key": 0,
+    "durationMs": 60000,
+    "id": "audio_features_track_id_1"
+  },
+  {
+    "acousticness": 0.9,
+    "danceability": 0.8,
+    "energy": 0.7,
+    "instrumentalness": 0.6,
+    "liveness": 0.5,
+    "loudness": -30.0,
+    "mode": 0,
+    "speechiness": 0.4,
+    "tempo": 180.0,
+    "timeSignature": 3,
+    "valence": 0.3,
+    "key": 11,
+    "durationMs": 120000,
+    "id": "audio_features_track_id_2"
+  }
+]
