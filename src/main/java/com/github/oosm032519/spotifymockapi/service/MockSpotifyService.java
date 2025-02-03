@@ -74,7 +74,7 @@ public class MockSpotifyService {
             Resource resource = resourceLoader.getResource(mockDataPath + "/playlist_tracks.json");
             InputStream inputStream = resource.getInputStream();
 
-            // JSONをList<Map<String, Object>>として読み込む (修正)
+            // JSONをList<Map<String, Object>>として読み込む
             List<Map<String, Object>> playlistTracks = objectMapper.readValue(inputStream, new TypeReference<List<Map<String, Object>>>() { // TypeReference を変更
             });
 

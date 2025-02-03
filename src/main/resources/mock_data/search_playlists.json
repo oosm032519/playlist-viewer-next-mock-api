@@ -1,39 +1,47 @@
 {
-  "playlists": {
-    "items": [
-      {
-        "id": "search_playlist_id_1",
-        "name": "Search Playlist 1",
-        "description": "Search Playlist 1 Description",
-        "tracks": {
-          "total": 10
-        },
-        "images": [
-          {
-            "url": "https://via.placeholder.com/128"
-          }
-        ],
-        "external_urls": {
+  "playlists": [
+    {
+      "id": "search_playlist_id_1",
+      "name": "Search Playlist 1",
+      "description": "Search Playlist 1 Description",
+      "tracks": {
+        "total": 10
+      },
+      "images": [
+        {
+          "url": "https://via.placeholder.com/128"
+        }
+      ],
+      "externalUrls": {
+        "externalUrls": {
           "spotify": "https://open.spotify.com/playlist/search_playlist_id_1"
         }
       },
-      {
-        "id": "search_playlist_id_2",
-        "name": "Search Playlist 2",
-        "description": "Search Playlist 2 Description",
-        "tracks": {
-          "total": 20
-        },
-        "images": [
-          {
-            "url": "https://via.placeholder.com/128"
-          }
-        ],
-        "external_urls": {
+      "owner": {
+        "displayName": "User 1"
+      }
+    },
+    {
+      "id": "search_playlist_id_2",
+      "name": "Search Playlist 2",
+      "description": "Search Playlist 2 Description",
+      "tracks": {
+        "total": 20
+      },
+      "images": [
+        {
+          "url": "https://via.placeholder.com/128"
+        }
+      ],
+      "externalUrls": {
+        "externalUrls": {
           "spotify": "https://open.spotify.com/playlist/search_playlist_id_2"
         }
+      },
+      "owner": {
+        "displayName": "User 2"
       }
-    ],
-    "total": 2
-  }
+    }
+  ],
+  "total": 2
 }
