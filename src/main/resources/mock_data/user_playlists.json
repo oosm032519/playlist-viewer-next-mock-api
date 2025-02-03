@@ -10,8 +10,10 @@
         "url": "https://via.placeholder.com/128"
       }
     ],
-    "external_urls": {
-      "spotify": "https://open.spotify.com/playlist/followed_playlist_id_1"
+    "externalUrls": {
+      "externalUrls": {
+        "spotify": "https://open.spotify.com/playlist/followed_playlist_id_1"
+      }
     },
     "owner": {
       "display_name": "Followed User 1"
@@ -28,8 +30,10 @@
         "url": "https://via.placeholder.com/128"
       }
     ],
-    "external_urls": {
-      "spotify": "https://open.spotify.com/playlist/followed_playlist_id_2"
+    "externalUrls": {
+      "externalUrls": {
+        "spotify": "https://open.spotify.com/playlist/followed_playlist_id_2"
+      }
     },
     "owner": {
       "display_name": "Followed User 2"
