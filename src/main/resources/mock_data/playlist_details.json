@@ -5,36 +5,6 @@
     "displayName": "Detail Owner 1"
   },
   "totalDuration": 180000,
-  "maxAudioFeatures": {
-    "acousticness": 0.9,
-    "danceability": 0.8,
-    "energy": 0.7,
-    "instrumentalness": 0.6,
-    "liveness": 0.5,
-    "speechiness": 0.4,
-    "valence": 0.3,
-    "tempo": 180.0
-  },
-  "minAudioFeatures": {
-    "acousticness": 0.1,
-    "danceability": 0.2,
-    "energy": 0.3,
-    "instrumentalness": 0.4,
-    "liveness": 0.5,
-    "speechiness": 0.6,
-    "valence": 0.7,
-    "tempo": 60.0
-  },
-  "averageAudioFeatures": {
-    "acousticness": 0.5,
-    "danceability": 0.5,
-    "energy": 0.5,
-    "instrumentalness": 0.5,
-    "liveness": 0.5,
-    "speechiness": 0.5,
-    "valence": 0.5,
-    "tempo": 120.0
-  },
   "genreCounts": {
     "Pop": 2,
     "Rock": 1
