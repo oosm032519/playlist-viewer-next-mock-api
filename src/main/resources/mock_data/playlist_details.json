@@ -3,46 +3,5 @@
   "owner": {
     "id": "detail_owner_id_1",
     "displayName": "Detail Owner 1"
-  },
-  "tracks": {
-    "items": [
-      {
-        "track": {
-          "type": "track",
-          "id": "detail_track_id_1",
-          "name": "Detail Track 1",
-          "durationMs": 60000,
-          "album": {
-            "type": "album",
-            "name": "Detail Album 1",
-            "images": [
-              {
-                "type": "image",
-                "url": "https://picsum.photos/seed/1/64/64"
-              }
-            ],
-            "externalUrls": {
-              "type": "externalUrls",
-              "spotify": "https://open.spotify.com/album/detail_album_id_1"
-            }
-          },
-          "artists": [
-            {
-              "type": "artist",
-              "name": "Detail Artist 1",
-              "externalUrls": {
-                "type": "externalUrls",
-                "spotify": "https://open.spotify.com/artist/detail_artist_id_1"
-              }
-            }
-          ],
-          "externalUrls": {
-            "type": "externalUrls",
-            "spotify": "https://open.spotify.com/track/detail_track_id_1"
-          },
-          "previewUrl": "https://via.placeholder.com/150"
-        }
-      }
-    ]
   }
 }
