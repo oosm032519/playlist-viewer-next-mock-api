@@ -27,7 +27,7 @@
       "images": [
         {
           "height": 640,
-          "url": "https://via.placeholder.com/128",
+          "url": "https://picsum.photos/seed/1/64/64",
           "width": 640
         }
       ],
@@ -105,7 +105,7 @@
       "images": [
         {
           "height": 640,
-          "url": "https://via.placeholder.com/128",
+          "url": "https://picsum.photos/seed/2/64/64",
           "width": 640
         }
       ],
