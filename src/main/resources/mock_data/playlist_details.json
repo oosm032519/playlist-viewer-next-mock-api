@@ -4,15 +4,6 @@
     "id": "detail_owner_id_1",
     "displayName": "Detail Owner 1"
   },
-  "totalDuration": 180000,
-  "genreCounts": {
-    "Pop": 2,
-    "Rock": 1
-  },
-  "seedArtists": [
-    "seed_artist_id_1",
-    "seed_artist_id_2"
-  ],
   "tracks": {
     "items": [
       {
@@ -50,23 +41,6 @@
             "spotify": "https://open.spotify.com/track/detail_track_id_1"
           },
           "previewUrl": "https://via.placeholder.com/150"
-        },
-        "audioFeatures": {
-          "type": "trackAudioFeatures",
-          "acousticness": 0.1,
-          "danceability": 0.2,
-          "energy": 0.3,
-          "instrumentalness": 0.4,
-          "liveness": 0.5,
-          "loudness": -60.0,
-          "mode": 1,
-          "speechiness": 0.6,
-          "tempo": 100.0,
-          "timeSignature": 4,
-          "valence": 0.7,
-          "key": 0,
-          "durationMs": 60000,
-          "id": "detail_track_id_1"
         }
       }
     ]
