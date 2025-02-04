@@ -20,25 +20,63 @@ public class MockSpotifyService {
         this.objectMapper.registerModule(new JavaTimeModule());
     }
 
+    // Helper function to extract the last three digits of a playlist ID
+    private int getLastThreeDigits(String playlistId) {
+        try {
+            if (playlistId.length() >= 3) {
+                return Integer.parseInt(playlistId.substring(playlistId.length() - 3));
+            } else {
+                return Integer.parseInt(playlistId);
+            }
+        } catch (NumberFormatException e) {
+            logger.error("Error parsing playlist ID: {}", playlistId, e);
+            return 0; // Default value in case of error
+        }
+    }
+
+    // Helper method to generate playlist ID
+    private String generatePlaylistId(int index) {
+        return String.format("mockPlaylistId%03d", index);
+    }
+
+    // Helper method to generate playlist name
+    private String generatePlaylistName(String playlistId) {
+        return "Mock Playlist " + playlistId.substring(playlistId.length() - 3);
+    }
+
+    // Helper method to generate user ID
+    private String generateUserId(String prefix, int index) {
+        return prefix + "_user_id_" + index;
+    }
+
+    // Helper method to generate user name
+    private String generateUserName(String prefix, int index) {
+        return prefix + " User " + index;
+    }
+
     // 1. searchPlaylists
     public Map<String, Object> getPlaylistSearchMockData(String query, int offset, int limit) {
         logger.info("getPlaylistSearchMockData called with query: {}, offset: {}, limit: {}", query, offset, limit);
 
         List<Map<String, Object>> playlists = new ArrayList<>();
-        int totalPlaylists = 10; // Total number of playlists to generate
+        int totalPlaylists = 999;
 
-        for (int i = 0; i < totalPlaylists; i++) {
+        for (int i = 1; i <= totalPlaylists; i++) {
+            String playlistId = generatePlaylistId(i);
+            String playlistName = generatePlaylistName(playlistId);
+            int trackCount = Math.min(getLastThreeDigits(playlistId), 50);
+
             Map<String, Object> playlist = new HashMap<>();
-            playlist.put("name", "Search Playlist " + (i + 1));
-            playlist.put("description", "Search Playlist " + (i + 1) + " Description");
-            playlist.put("tracks", Map.of("total", (i + 1) * 5));
-            playlist.put("images", List.of(Map.of("url", "https://picsum.photos/seed/" + (i + 1) + "/64/64")));
-            playlist.put("externalUrls", Map.of("externalUrls", Map.of("spotify", "https://open.spotify.com/playlist/search_playlist_id_" + (i + 1))));
-            playlist.put("owner", Map.of("displayName", "User " + (i + 1)));
+            playlist.put("id", playlistId);
+            playlist.put("name", playlistName);
+            playlist.put("description", "Search Playlist " + i + " Description");
+            playlist.put("tracks", Map.of("total", trackCount));
+            playlist.put("images", List.of(Map.of("url", "https://picsum.photos/seed/" + i + "/64/64")));
+            playlist.put("externalUrls", Map.of("externalUrls", Map.of("spotify", "https://open.spotify.com/playlist/" + playlistId)));
+            playlist.put("owner", Map.of("displayName", generateUserName("User", i)));
             playlists.add(playlist);
         }
 
-        // Apply offset and limit
         int start = Math.min(offset, playlists.size());
         int end = Math.min(offset + limit, playlists.size());
         List<Map<String, Object>> paginatedPlaylists = playlists.subList(start, end);
@@ -55,12 +93,13 @@ public class MockSpotifyService {
     public Map<String, Object> getPlaylistDetailsMockData(String playlistId) {
         logger.info("getPlaylistDetailsMockData called with playlistId: {}", playlistId);
 
-        // Extract the last three digits of the playlist ID
-        String lastThreeDigits = playlistId.length() > 3 ? playlistId.substring(playlistId.length() - 3) : playlistId;
+        int trackCount = Math.min(getLastThreeDigits(playlistId), 50);
+        String playlistName = generatePlaylistName(playlistId);
 
         Map<String, Object> playlistDetails = new HashMap<>();
-        playlistDetails.put("playlistName", "mockPlaylist" + lastThreeDigits);
-        playlistDetails.put("owner", Map.of("id", "detail_owner_id_" + playlistId, "displayName", "mockOwner" + lastThreeDigits));
+        playlistDetails.put("playlistName", playlistName);
+        playlistDetails.put("owner", Map.of("id", generateUserId("detail_owner", getLastThreeDigits(playlistId)), "displayName", generateUserName("mockOwner", getLastThreeDigits(playlistId))));
+        playlistDetails.put("tracks", Map.of("total", trackCount));
 
         logger.info("Returning mock data for playlist details: {}", playlistDetails);
         return playlistDetails;
@@ -70,8 +109,8 @@ public class MockSpotifyService {
     public List<Map<String, Object>> getPlaylistTracksMockData(String playlistId) {
         logger.info("getPlaylistTracksMockData called with playlistId: {}", playlistId);
 
+        int numTracks = Math.min(getLastThreeDigits(playlistId), 50);
         List<Map<String, Object>> playlistTracks = new ArrayList<>();
-        int numTracks = 5; // Number of tracks to generate for each playlist
 
         for (int i = 0; i < numTracks; i++) {
             Map<String, Object> track = new HashMap<>();
@@ -143,10 +182,18 @@ public class MockSpotifyService {
         logger.info("getArtistGenresMockData called with artistIds: {}", artistIds);
 
         Map<String, List<String>> artistGenres = new HashMap<>();
+        List<String> availableGenres = Arrays.asList("Rock", "Pop", "Jazz", "Hip Hop", "Electronic", "Classical", "Country", "Blues", "Reggae", "Metal");
+        Random random = new Random();
+
         for (String artistId : artistIds) {
             List<String> genres = new ArrayList<>();
-            genres.add("genre" + artistId + "_1");
-            genres.add("genre" + artistId + "_2");
+            int numGenres = random.nextInt(3) + 1; // 1 to 3 genres per artist
+            for (int i = 0; i < numGenres; i++) {
+                String genre = availableGenres.get(random.nextInt(availableGenres.size()));
+                if (!genres.contains(genre)) {
+                    genres.add(genre);
+                }
+            }
             artistGenres.put(artistId, genres);
         }
 
@@ -187,21 +234,23 @@ public class MockSpotifyService {
         logger.info("getAudioFeaturesForTracksMockData called with trackIds: {}", trackIds);
 
         List<Map<String, Object>> audioFeaturesList = new ArrayList<>();
+        Random random = new Random();
+
         for (String trackId : trackIds) {
             Map<String, Object> audioFeatures = new HashMap<>();
-            audioFeatures.put("acousticness", 0.1);
-            audioFeatures.put("danceability", 0.2);
-            audioFeatures.put("energy", 0.3);
-            audioFeatures.put("instrumentalness", 0.4);
-            audioFeatures.put("liveness", 0.5);
-            audioFeatures.put("loudness", -60.0);
-            audioFeatures.put("mode", 1);
-            audioFeatures.put("speechiness", 0.6);
-            audioFeatures.put("tempo", 100.0);
-            audioFeatures.put("timeSignature", 4);
-            audioFeatures.put("valence", 0.7);
-            audioFeatures.put("key", 0);
-            audioFeatures.put("durationMs", 60000);
+            audioFeatures.put("acousticness", random.nextDouble());
+            audioFeatures.put("danceability", random.nextDouble());
+            audioFeatures.put("energy", random.nextDouble());
+            audioFeatures.put("instrumentalness", random.nextDouble());
+            audioFeatures.put("liveness", random.nextDouble());
+            audioFeatures.put("loudness", -60.0 + random.nextDouble() * 60.0); // Assuming loudness ranges from -60.0 to 0.0
+            audioFeatures.put("mode", random.nextInt(2)); // 0 or 1
+            audioFeatures.put("speechiness", random.nextDouble());
+            audioFeatures.put("tempo", 50.0 + random.nextDouble() * 150.0); // Assuming tempo ranges from 50 to 200
+            audioFeatures.put("timeSignature", random.nextInt(5) + 1); // Assuming time signature ranges from 1 to 5
+            audioFeatures.put("valence", random.nextDouble());
+            audioFeatures.put("key", random.nextInt(12)); // Assuming key ranges from 0 to 11
+            audioFeatures.put("durationMs", 100000 + random.nextInt(200000)); // Assuming duration ranges from 100000 to 300000
             audioFeatures.put("id", "audio_features_" + trackId);
             audioFeaturesList.add(audioFeatures);
         }
@@ -215,14 +264,28 @@ public class MockSpotifyService {
         logger.info("getFollowedPlaylistsMockData called (Returning user playlists)");
 
         List<Map<String, Object>> playlists = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 1; i <= 8; i++) {
+            String playlistId = generatePlaylistId(i);
+            String playlistName = generatePlaylistName(playlistId);
+            int trackCount = Math.min(getLastThreeDigits(playlistId), 50);
+
             Map<String, Object> playlist = new HashMap<>();
-            playlist.put("id", "followed_playlist_id_" + (i + 1));
-            playlist.put("name", "Followed Playlist " + (i + 1));
-            playlist.put("tracks", Map.of("total", 5 + (i * 5)));
-            playlist.put("images", List.of(Map.of("url", "https://picsum.photos/seed/" + (i + 1) + "/64/64")));
-            playlist.put("externalUrls", Map.of("externalUrls", Map.of("spotify", "https://open.spotify.com/playlist/followed_playlist_id_" + (i + 1))));
-            playlist.put("owner", Map.of("display_name", "Followed User " + (i + 1)));
+            playlist.put("id", playlistId);
+            playlist.put("name", playlistName);
+            playlist.put("tracks", Map.of("total", trackCount));
+            playlist.put("images", List.of(Map.of("url", "https://picsum.photos/seed/" + i + "/64/64")));
+            playlist.put("externalUrls", Map.of("externalUrls", Map.of("spotify", "https://open.spotify.com/playlist/" + playlistId)));
+
+            // Owner information
+            Map<String, Object> owner = new HashMap<>();
+            owner.put("displayName", generateUserName("Followed", i));
+            owner.put("id", generateUserId("followed", i));
+            owner.put("type", "USER");
+            owner.put("externalUrls", Map.of("externalUrls", Map.of("spotify", "https://open.spotify.com/user/" + generateUserId("followed", i))));
+            owner.put("href", "https://api.spotify.com/v1/users/" + generateUserId("followed", i));
+            owner.put("uri", "spotify:user:" + generateUserId("followed", i));
+
+            playlist.put("owner", owner);
             playlists.add(playlist);
         }
 
