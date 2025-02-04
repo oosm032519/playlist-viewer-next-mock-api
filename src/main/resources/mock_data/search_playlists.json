@@ -1,7 +1,7 @@
 {
   "playlists": [
     {
-      "id": "search_playlist_id_1",
+      "id": "mockPlaylistId001",
       "name": "Search Playlist 1",
       "description": "Search Playlist 1 Description",
       "tracks": {
@@ -22,7 +22,7 @@
       }
     },
     {
-      "id": "search_playlist_id_2",
+      "id": "mockPlaylistId002",
       "name": "Search Playlist 2",
       "description": "Search Playlist 2 Description",
       "tracks": {
@@ -41,7 +41,28 @@
       "owner": {
         "displayName": "User 2"
       }
+    },
+    {
+      "id": "mockPlaylistId003",
+      "name": "Search Playlist 3",
+      "description": "Search Playlist 3 Description",
+      "tracks": {
+        "total": 15
+      },
+      "images": [
+        {
+          "url": "https://picsum.photos/seed/3/64/64"
+        }
+      ],
+      "externalUrls": {
+        "externalUrls": {
+          "spotify": "https://open.spotify.com/playlist/search_playlist_id_3"
+        }
+      },
+      "owner": {
+        "displayName": "User 3"
+      }
     }
   ],
-  "total": 2
+  "total": 3
 }

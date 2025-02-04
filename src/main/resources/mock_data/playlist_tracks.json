@@ -1,158 +1,160 @@
-[
-  {
-    "album": {
-      "albumType": "ALBUM",
-      "artists": [
-        {
+{
+  "playlists": {
+    "mockPlaylistId001": [
+      {
+        "album": {
+          "albumType": "ALBUM",
+          "artists": [
+            {
+              "externalUrls": {
+                "externalUrls": {
+                  "spotify": "https://open.spotify.com/artist/artist_id_1"
+                }
+              },
+              "href": "https://api.spotify.com/v1/artists/artist_id_1",
+              "id": "artist_id_1",
+              "name": "Artist 1",
+              "type": "ARTIST",
+              "uri": "spotify:artist:artist_id_1"
+            }
+          ],
+          "availableMarkets": [],
           "externalUrls": {
             "externalUrls": {
-              "spotify": "https://open.spotify.com/artist/artist_id_1"
+              "spotify": "https://open.spotify.com/album/album_id_1"
             }
           },
-          "href": "https://api.spotify.com/v1/artists/artist_id_1",
-          "id": "artist_id_1",
-          "name": "Artist 1",
-          "type": "ARTIST",
-          "uri": "spotify:artist:artist_id_1"
-        }
-      ],
-      "availableMarkets": [],
-      "externalUrls": {
-        "externalUrls": {
-          "spotify": "https://open.spotify.com/album/album_id_1"
-        }
-      },
-      "href": "https://api.spotify.com/v1/albums/album_id_1",
-      "id": "album_id_1",
-      "images": [
-        {
-          "height": 640,
-          "url": "https://picsum.photos/seed/1/64/64",
-          "width": 640
-        }
-      ],
-      "name": "Album 1",
-      "releaseDate": "2023-01-01",
-      "releaseDatePrecision": "DAY",
-      "type": "ALBUM",
-      "uri": "spotify:album:album_id_1"
-    },
-    "artists": [
-      {
+          "href": "https://api.spotify.com/v1/albums/album_id_1",
+          "id": "album_id_1",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://picsum.photos/seed/1/64/64",
+              "width": 640
+            }
+          ],
+          "name": "Album 1",
+          "releaseDate": "2023-01-01",
+          "releaseDatePrecision": "DAY",
+          "type": "ALBUM",
+          "uri": "spotify:album:album_id_1"
+        },
+        "artists": [
+          {
+            "externalUrls": {
+              "externalUrls": {
+                "spotify": "https://open.spotify.com/artist/artist_id_1"
+              }
+            },
+            "href": "https://api.spotify.com/v1/artists/artist_id_1",
+            "id": "artist_id_1",
+            "name": "Artist 1",
+            "type": "ARTIST",
+            "uri": "spotify:artist:artist_id_1"
+          }
+        ],
+        "availableMarkets": [],
+        "discNumber": 1,
+        "durationMs": 180000,
+        "explicit": false,
+        "externalIds": {
+          "isrc": "USUM71800001"
+        },
         "externalUrls": {
           "externalUrls": {
-            "spotify": "https://open.spotify.com/artist/artist_id_1"
+            "spotify": "https://open.spotify.com/track/track_id_1"
           }
         },
-        "href": "https://api.spotify.com/v1/artists/artist_id_1",
-        "id": "artist_id_1",
-        "name": "Artist 1",
-        "type": "ARTIST",
-        "uri": "spotify:artist:artist_id_1"
+        "href": "https://api.spotify.com/v1/tracks/track_id_1",
+        "id": "track_id_1",
+        "isPlayable": true,
+        "linkedFrom": null,
+        "restrictions": null,
+        "name": "Track 1",
+        "popularity": 80,
+        "previewUrl": "https://via.placeholder.com/150",
+        "trackNumber": 1,
+        "type": "TRACK",
+        "uri": "spotify:track:track_id_1"
       }
     ],
-    "availableMarkets": [],
-    "discNumber": 1,
-    "durationMs": 180000,
-    "explicit": false,
-    "externalIds": {
-      "externalIds": {
-        "isrc": "USUM71800001"
-      }
-    },
-    "externalUrls": {
-      "externalUrls": {
-        "spotify": "https://open.spotify.com/track/track_id_1"
-      }
-    },
-    "href": "https://api.spotify.com/v1/tracks/track_id_1",
-    "id": "track_id_1",
-    "isPlayable": true,
-    "linkedFrom": null,
-    "restrictions": null,
-    "name": "Track 1",
-    "popularity": 80,
-    "previewUrl": "https://via.placeholder.com/150",
-    "trackNumber": 1,
-    "type": "TRACK",
-    "uri": "spotify:track:track_id_1"
-  },
-  {
-    "album": {
-      "albumType": "ALBUM",
-      "artists": [
-        {
+    "mockPlaylistId002": [
+      {
+        "album": {
+          "albumType": "SINGLE",
+          "artists": [
+            {
+              "externalUrls": {
+                "externalUrls": {
+                  "spotify": "https://open.spotify.com/artist/artist_id_3"
+                }
+              },
+              "href": "https://api.spotify.com/v1/artists/artist_id_3",
+              "id": "artist_id_3",
+              "name": "Artist 3",
+              "type": "ARTIST",
+              "uri": "spotify:artist:artist_id_3"
+            }
+          ],
+          "availableMarkets": [],
           "externalUrls": {
             "externalUrls": {
-              "spotify": "https://open.spotify.com/artist/artist_id_2"
+              "spotify": "https://open.spotify.com/album/album_id_3"
             }
           },
-          "href": "https://api.spotify.com/v1/artists/artist_id_2",
-          "id": "artist_id_2",
-          "name": "Artist 2",
-          "type": "ARTIST",
-          "uri": "spotify:artist:artist_id_2"
-        }
-      ],
-      "availableMarkets": [],
-      "externalUrls": {
-        "externalUrls": {
-          "spotify": "https://open.spotify.com/album/album_id_2"
-        }
-      },
-      "href": "https://api.spotify.com/v1/albums/album_id_2",
-      "id": "album_id_2",
-      "images": [
-        {
-          "height": 640,
-          "url": "https://picsum.photos/seed/2/64/64",
-          "width": 640
-        }
-      ],
-      "name": "Album 2",
-      "releaseDate": "2023-01-02",
-      "releaseDatePrecision": "DAY",
-      "type": "ALBUM",
-      "uri": "spotify:album:album_id_2"
-    },
-    "artists": [
-      {
+          "href": "https://api.spotify.com/v1/albums/album_id_3",
+          "id": "album_id_3",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://picsum.photos/seed/3/64/64",
+              "width": 640
+            }
+          ],
+          "name": "Album 3",
+          "releaseDate": "2023-01-03",
+          "releaseDatePrecision": "DAY",
+          "type": "ALBUM",
+          "uri": "spotify:album:album_id_3"
+        },
+        "artists": [
+          {
+            "externalUrls": {
+              "externalUrls": {
+                "spotify": "https://open.spotify.com/artist/artist_id_3"
+              }
+            },
+            "href": "https://api.spotify.com/v1/artists/artist_id_3",
+            "id": "artist_id_3",
+            "name": "Artist 3",
+            "type": "ARTIST",
+            "uri": "spotify:artist:artist_id_3"
+          }
+        ],
+        "availableMarkets": [],
+        "discNumber": 1,
+        "durationMs": 200000,
+        "explicit": false,
+        "externalIds": {
+          "isrc": "USUM71800003"
+        },
         "externalUrls": {
           "externalUrls": {
-            "spotify": "https://open.spotify.com/artist/artist_id_2"
+            "spotify": "https://open.spotify.com/track/track_id_3"
           }
         },
-        "href": "https://api.spotify.com/v1/artists/artist_id_2",
-        "id": "artist_id_2",
-        "name": "Artist 2",
-        "type": "ARTIST",
-        "uri": "spotify:artist:artist_id_2"
+        "href": "https://api.spotify.com/v1/tracks/track_id_3",
+        "id": "track_id_3",
+        "isPlayable": true,
+        "linkedFrom": null,
+        "restrictions": null,
+        "name": "Track 3",
+        "popularity": 70,
+        "previewUrl": "https://via.placeholder.com/150",
+        "trackNumber": 1,
+        "type": "TRACK",
+        "uri": "spotify:track:track_id_3"
       }
-    ],
-    "availableMarkets": [],
-    "discNumber": 1,
-    "durationMs": 240000,
-    "explicit": true,
-    "externalIds": {
-      "externalIds": {
-        "isrc": "USUM71800002"
-      }
-    },
-    "externalUrls": {
-      "externalUrls": {
-        "spotify": "https://open.spotify.com/track/track_id_2"
-      }
-    },
-    "href": "https://api.spotify.com/v1/tracks/track_id_2",
-    "id": "track_id_2",
-    "isPlayable": true,
-    "linkedFrom": null,
-    "restrictions": null,
-    "name": "Track 2",
-    "popularity": 75,
-    "previewUrl": "https://via.placeholder.com/150",
-    "trackNumber": 2,
-    "type": "TRACK",
-    "uri": "spotify:track:track_id_2"
+    ]
   }
-]
+}

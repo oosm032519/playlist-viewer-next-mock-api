@@ -1,6 +1,7 @@
 package com.github.oosm032519.spotifymockapi.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.slf4j.Logger;
@@ -56,8 +57,18 @@ public class MockSpotifyService {
             logger.info("Loading resource from: {}", mockDataPath + "/playlist_details.json");
             Resource resource = resourceLoader.getResource(mockDataPath + "/playlist_details.json");
             InputStream inputStream = resource.getInputStream();
-            Map<String, Object> response = objectMapper.readValue(inputStream, new TypeReference<Map<String, Object>>() {
+
+            // JSONデータを読み込み、JsonNodeとして扱う
+            JsonNode rootNode = objectMapper.readTree(inputStream);
+            // "playlists"キーの下にあるオブジェクトを取得
+            JsonNode playlistsNode = rootNode.path("playlists");
+            // 指定されたplaylistIdに一致するプレイリストデータを取得
+            JsonNode playlistNode = playlistsNode.path(playlistId);
+
+            // JsonNodeをMap<String, Object>に変換
+            Map<String, Object> response = objectMapper.convertValue(playlistNode, new TypeReference<Map<String, Object>>() {
             });
+
             logger.info("Returning mock data for playlist details: {}", response);
             return response;
         } catch (IOException e) {
@@ -67,15 +78,22 @@ public class MockSpotifyService {
     }
 
     // 3. getPlaylistTracks
-    public List<Map<String, Object>> getPlaylistTracksMockData(String playlistId) { // 返り値の型を変更
+    public List<Map<String, Object>> getPlaylistTracksMockData(String playlistId) {
         logger.info("getPlaylistTracksMockData called with playlistId: {}", playlistId);
         try {
             logger.info("Loading resource from: {}", mockDataPath + "/playlist_tracks.json");
             Resource resource = resourceLoader.getResource(mockDataPath + "/playlist_tracks.json");
             InputStream inputStream = resource.getInputStream();
 
-            // JSONをList<Map<String, Object>>として読み込む
-            List<Map<String, Object>> playlistTracks = objectMapper.readValue(inputStream, new TypeReference<List<Map<String, Object>>>() { // TypeReference を変更
+            // JSONデータを読み込み、JsonNodeとして扱う
+            JsonNode rootNode = objectMapper.readTree(inputStream);
+            // "playlists"キーの下にあるオブジェクトを取得
+            JsonNode playlistsNode = rootNode.path("playlists");
+            // 指定されたplaylistIdに一致するプレイリストのトラックデータを取得
+            JsonNode tracksNode = playlistsNode.path(playlistId);
+
+            // JsonNodeをList<Map<String, Object>>に変換
+            List<Map<String, Object>> playlistTracks = objectMapper.convertValue(tracksNode, new TypeReference<List<Map<String, Object>>>() {
             });
 
             logger.info("Returning mock data for playlist tracks: {}", playlistTracks);
