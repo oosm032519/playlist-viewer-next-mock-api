@@ -28,6 +28,11 @@ public class MockPlaylistService {
     private static final String MOCK_OWNER_PREFIX = MockDataGeneratorUtil.MOCK_OWNER_PREFIX;
     private static final String FOLLOWED_USER_PREFIX = MockDataGeneratorUtil.FOLLOWED_USER_PREFIX;
 
+    private final MockTrackService mockTrackService;
+
+    public MockPlaylistService(MockTrackService mockTrackService) {
+        this.mockTrackService = mockTrackService;
+    }
 
     /**
      * プレイリスト検索のモックデータを取得。
@@ -110,6 +115,9 @@ public class MockPlaylistService {
         for (int i = 0; i < numTracks; i++) {
             Map<String, Object> track = new HashMap<>(); // 各トラックのMap
 
+            // トラックIDの生成
+            String trackId = "track_id_" + (i + 1);
+
             // アルバムデータの生成
             Map<String, Object> album = new HashMap<>();
             album.put("albumType", "ALBUM");
@@ -149,12 +157,12 @@ public class MockPlaylistService {
 
             track.put("availableMarkets", new ArrayList<>());
             track.put("discNumber", 1);
-            track.put("durationMs", 180000 + (i * 10000));
+            track.put("durationMs", mockTrackService.generateRandomDurationMs(trackId)); // MockTrackServiceからdurationMsを取得 (トラックIDに基づいて生成)
             track.put("explicit", false);
             track.put("externalIds", Map.of("isrc", "USUM7180000" + (i + 1)));
-            track.put("externalUrls", Map.of("externalUrls", Map.of("spotify", "https://open.spotify.com/track/track_id_" + (i + 1))));
-            track.put("href", "https://api.spotify.com/v1/tracks/track_id_" + (i + 1));
-            track.put("id", "track_id_" + (i + 1));
+            track.put("externalUrls", Map.of("externalUrls", Map.of("spotify", "https://open.spotify.com/track/" + trackId)));
+            track.put("href", "https://api.spotify.com/v1/tracks/" + trackId);
+            track.put("id", trackId);
             track.put("isPlayable", true);
             track.put("linkedFrom", null);
             track.put("restrictions", null);
@@ -163,7 +171,7 @@ public class MockPlaylistService {
             track.put("previewUrl", "https://via.placeholder.com/150");
             track.put("trackNumber", i + 1);
             track.put("type", "TRACK");
-            track.put("uri", "spotify:track:track_id_" + (i + 1));
+            track.put("uri", "spotify:track:" + trackId);
 
             playlistTracks.add(track); // 生成したトラックをリストに追加
         }
@@ -171,7 +179,6 @@ public class MockPlaylistService {
         logger.info("Returning mock data for playlist tracks: {}", playlistTracks);
         return playlistTracks;
     }
-
 
     /**
      * フォロー中のプレイリストのモックデータを取得。

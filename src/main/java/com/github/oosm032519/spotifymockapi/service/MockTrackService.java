@@ -22,6 +22,7 @@ public class MockTrackService {
     private static final String RECOMMENDATION_ARTIST_ID_PREFIX = MockDataGeneratorUtil.RECOMMENDATION_ARTIST_ID_PREFIX;
     private static final String AUDIO_FEATURES_ID_PREFIX = MockDataGeneratorUtil.AUDIO_FEATURES_ID_PREFIX;
 
+    private Map<String, Integer> trackDurationMsMap = new HashMap<>(); // トラックIDとdurationMsを紐づけて保持するマップ
 
     /**
      * おすすめトラックリストのモックデータを取得。
@@ -35,9 +36,10 @@ public class MockTrackService {
         // モックおすすめトラックデータを生成
         for (int i = 0; i < 5; i++) {
             Map<String, Object> track = new HashMap<>(); // 各トラックのMap
-            track.put("id", RECOMMENDATION_TRACK_ID_PREFIX + (i + 1));
+            String trackId = RECOMMENDATION_TRACK_ID_PREFIX + (i + 1); // トラックIDを生成
+            track.put("id", trackId);
             track.put("name", RECOMMENDATION_TRACK_NAME_PREFIX + (i + 1));
-            track.put("durationMs", 200000 + (i * 10000));
+            track.put("durationMs", generateRandomDurationMs(trackId)); // トラックIDに基づいてdurationMsを生成
             track.put("album", Map.of(
                     "name", RECOMMENDATION_ALBUM_NAME_PREFIX + (i + 1),
                     "images", List.of(Map.of("url", "https://picsum.photos/seed/" + (i + 1) + "/64/64")),
@@ -47,7 +49,7 @@ public class MockTrackService {
                     "name", RECOMMENDATION_ARTIST_NAME_PREFIX + (i + 1),
                     "externalUrls", Map.of("externalUrls", Map.of("spotify", "https://open.spotify.com/artist/" + RECOMMENDATION_ARTIST_ID_PREFIX + (i + 1)))
             )));
-            track.put("externalUrls", Map.of("externalUrls", Map.of("spotify", "https://open.spotify.com/track/" + RECOMMENDATION_TRACK_ID_PREFIX + (i + 1))));
+            track.put("externalUrls", Map.of("externalUrls", Map.of("spotify", "https://open.spotify.com/track/" + trackId)));
             track.put("previewUrl", "https://via.placeholder.com/150");
             recommendations.add(track); // 生成したおすすめトラックをリストに追加
         }
@@ -83,12 +85,25 @@ public class MockTrackService {
             audioFeatures.put("timeSignature", random.nextInt(5) + 1); // 拍子記号は1〜5の範囲を想定
             audioFeatures.put("valence", random.nextDouble());
             audioFeatures.put("key", random.nextInt(12)); // キーは0〜11の範囲を想定
-            audioFeatures.put("durationMs", 100000 + random.nextInt(200000)); // 再生時間は100000〜300000msの範囲を想定
+            audioFeatures.put("durationMs", generateRandomDurationMs(trackId)); // トラックIDに基づいてdurationMsを生成
             audioFeatures.put("id", AUDIO_FEATURES_ID_PREFIX + trackId);
             audioFeaturesList.add(audioFeatures); // 生成したAudioFeatures取得リクエストをリストに追加
         }
 
         logger.info("Returning mock data for audio features for tracks: {}", audioFeaturesList);
         return audioFeaturesList;
+    }
+
+    /**
+     * ランダムなdurationMsを生成するヘルパーメソッド。
+     *
+     * @param trackId トラックID
+     * @return ランダムなdurationMs (ミリ秒)
+     */
+    public int generateRandomDurationMs(String trackId) {
+        return trackDurationMsMap.computeIfAbsent(trackId, key -> {
+            Random random = new Random();
+            return 100000 + random.nextInt(200000); // 100000〜300000msの範囲でランダムなdurationMsを生成
+        });
     }
 }
