@@ -94,10 +94,10 @@ public class MockApiController {
     }
 
     /**
-     * 複数のトラックのオーディオフィーチャーズを取得。
+     * 複数のトラックのAudioFeatures取得リクエストを取得。
      *
      * @param trackIds トラックIDリスト
-     * @return トラックIDとオーディオフィーチャーズのリスト
+     * @return トラックIDとAudioFeatures取得リクエストのリスト
      */
     @GetMapping("/tracks/audio-features")
     public ResponseEntity<List<Map<String, Object>>> getAudioFeaturesForTracks(@RequestParam("trackIds") List<String> trackIds) {
