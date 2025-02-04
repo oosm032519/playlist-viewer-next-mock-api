@@ -20,7 +20,7 @@ public class MockDataGeneratorUtil {
     public static final String USER_NAME_PREFIX = "User";
     public static final String DETAIL_OWNER_PREFIX = "detail_owner";
     public static final String MOCK_OWNER_PREFIX = "mockOwner";
-    public static final String FOLLOWED_USER_PREFIX = "followed";
+    public static final String FOLLOWED_USER_PREFIX = "mockOwner";
     public static final String RECOMMENDATION_TRACK_ID_PREFIX = "recommendation_track_id_";
     public static final String RECOMMENDATION_TRACK_NAME_PREFIX = "Recommendation Track ";
     public static final String RECOMMENDATION_ALBUM_NAME_PREFIX = "Recommendation Album ";

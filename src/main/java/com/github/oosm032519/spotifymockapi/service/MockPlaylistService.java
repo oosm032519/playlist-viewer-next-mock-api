@@ -21,8 +21,6 @@ public class MockPlaylistService {
     private static final int MAX_TRACKS_PER_PLAYLIST = MockDataGeneratorUtil.MAX_TRACKS_PER_PLAYLIST;
     private static final int DEFAULT_FOLLOWED_PLAYLISTS_COUNT = MockDataGeneratorUtil.DEFAULT_FOLLOWED_PLAYLISTS_COUNT;
 
-    private static final String PLAYLIST_ID_PREFIX = MockDataGeneratorUtil.PLAYLIST_ID_PREFIX;
-    private static final String PLAYLIST_NAME_PREFIX = MockDataGeneratorUtil.PLAYLIST_NAME_PREFIX;
     private static final String USER_NAME_PREFIX = MockDataGeneratorUtil.USER_NAME_PREFIX;
     private static final String DETAIL_OWNER_PREFIX = MockDataGeneratorUtil.DETAIL_OWNER_PREFIX;
     private static final String MOCK_OWNER_PREFIX = MockDataGeneratorUtil.MOCK_OWNER_PREFIX;

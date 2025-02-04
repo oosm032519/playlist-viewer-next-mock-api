@@ -17,7 +17,6 @@ import java.util.Map;
 public class MockSpotifyService {
 
     private static final Logger logger = LoggerFactory.getLogger(MockSpotifyService.class);
-    private final ObjectMapper objectMapper;
     private final MockPlaylistService mockPlaylistService;
     private final MockArtistService mockArtistService;
     private final MockTrackService mockTrackService;
@@ -30,8 +29,8 @@ public class MockSpotifyService {
      * @param mockTrackService    トラックモックデータ生成サービス
      */
     public MockSpotifyService(MockPlaylistService mockPlaylistService, MockArtistService mockArtistService, MockTrackService mockTrackService) {
-        this.objectMapper = new ObjectMapper();
-        this.objectMapper.registerModule(new JavaTimeModule()); // Java 8 Date/Time API を Jackson で扱うためのモジュール登録
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule()); // Java 8 Date/Time API を Jackson で扱うためのモジュール登録
         this.mockPlaylistService = mockPlaylistService;
         this.mockArtistService = mockArtistService;
         this.mockTrackService = mockTrackService;

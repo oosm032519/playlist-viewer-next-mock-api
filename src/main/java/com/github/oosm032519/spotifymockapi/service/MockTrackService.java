@@ -22,7 +22,7 @@ public class MockTrackService {
     private static final String RECOMMENDATION_ARTIST_ID_PREFIX = MockDataGeneratorUtil.RECOMMENDATION_ARTIST_ID_PREFIX;
     private static final String AUDIO_FEATURES_ID_PREFIX = MockDataGeneratorUtil.AUDIO_FEATURES_ID_PREFIX;
 
-    private Map<String, Integer> trackDurationMsMap = new HashMap<>(); // トラックIDとdurationMsを紐づけて保持するマップ
+    private final Map<String, Integer> trackDurationMsMap = new HashMap<>(); // トラックIDとdurationMsを紐づけて保持するマップ
 
     /**
      * おすすめトラックリストのモックデータを取得。
