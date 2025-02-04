@@ -3,7 +3,6 @@ package com.github.oosm032519.spotifymockapi.controller;
 import com.github.oosm032519.spotifymockapi.service.MockSpotifyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,109 +17,113 @@ public class MockApiController {
     private static final int DEFAULT_OFFSET = 0;
     private static final int DEFAULT_LIMIT = 20;
 
-    @Autowired
-    private MockSpotifyService mockSpotifyService;
+    private final MockSpotifyService mockSpotifyService;
+
+    public MockApiController(MockSpotifyService mockSpotifyService) {
+        this.mockSpotifyService = mockSpotifyService;
+    }
 
     /**
-     * プレイリストを検索する。
+     * プレイリストを検索。
      *
-     * @param query  検索クエリ
-     * @param offset 検索結果のオフセット
-     * @param limit  検索結果の最大件数
+     * @param query  検索キーワード
+     * @param offset 検索開始位置 (デフォルト: 0)
+     * @param limit  取得件数上限 (デフォルト: 20)
      * @return プレイリストの検索結果
      */
     @GetMapping("/search/playlists")
     public ResponseEntity<Map<String, Object>> searchPlaylists(
-            @RequestParam String query,
-            @RequestParam(defaultValue = "" + DEFAULT_OFFSET) int offset,
-            @RequestParam(defaultValue = "" + DEFAULT_LIMIT) int limit) {
-        logger.info("GET /mock/search/playlists called with query: {}", query);
+            @RequestParam("query") String query,
+            @RequestParam(name = "offset", defaultValue = "" + DEFAULT_OFFSET) int offset,
+            @RequestParam(name = "limit", defaultValue = "" + DEFAULT_LIMIT) int limit
+    ) {
+        logger.debug("プレイリスト検索リクエスト: query={}, offset={}, limit={}", query, offset, limit);
         Map<String, Object> response = mockSpotifyService.getPlaylistSearchMockData(query, offset, limit);
         return createOkResponse(response);
     }
 
     /**
-     * プレイリストの詳細情報を取得する。
+     * プレイリストの詳細情報を取得。
      *
      * @param playlistId プレイリストID
      * @return プレイリストの詳細情報
      */
     @GetMapping("/playlists/{playlistId}")
-    public ResponseEntity<Map<String, Object>> getPlaylistDetails(@PathVariable String playlistId) {
-        logger.info("GET /mock/playlists/{} called", playlistId);
+    public ResponseEntity<Map<String, Object>> getPlaylistDetails(@PathVariable("playlistId") String playlistId) {
+        logger.debug("プレイリスト詳細情報取得リクエスト: playlistId={}", playlistId);
         Map<String, Object> response = mockSpotifyService.getPlaylistDetailsMockData(playlistId);
         return createOkResponse(response);
     }
 
     /**
-     * プレイリストのトラックを取得する。
+     * プレイリストのトラックリストを取得。
      *
      * @param playlistId プレイリストID
-     * @return プレイリストのトラック
+     * @return プレイリストのトラックリスト
      */
     @GetMapping("/playlists/{playlistId}/tracks")
-    public ResponseEntity<List<Map<String, Object>>> getPlaylistTracks(@PathVariable String playlistId) {
-        logger.info("GET /mock/playlists/{}/tracks called", playlistId);
+    public ResponseEntity<List<Map<String, Object>>> getPlaylistTracks(@PathVariable("playlistId") String playlistId) {
+        logger.debug("プレイリストトラックリスト取得リクエスト: playlistId={}", playlistId);
         List<Map<String, Object>> response = mockSpotifyService.getPlaylistTracksMockData(playlistId);
         return createOkResponse(response);
     }
 
     /**
-     * アーティストのジャンルを取得する。
+     * 複数のアーティストのジャンル情報を取得。
      *
-     * @param artistIds アーティストIDのリスト
-     * @return アーティストIDとジャンルのマップ
+     * @param artistIds アーティストIDリスト
+     * @return アーティストIDとジャンルリストのマップ
      */
     @GetMapping("/artists/genres")
-    public ResponseEntity<Map<String, List<String>>> getArtistGenres(@RequestParam List<String> artistIds) {
-        logger.info("GET /mock/artists/genres called with artistIds: {}", artistIds);
+    public ResponseEntity<Map<String, List<String>>> getArtistGenres(@RequestParam("artistIds") List<String> artistIds) {
+        logger.debug("アーティストジャンル情報取得リクエスト: artistIds={}", artistIds);
         Map<String, List<String>> response = mockSpotifyService.getArtistGenresMockData(artistIds);
         return createOkResponse(response);
     }
 
     /**
-     * おすすめトラックを取得する。
+     * おすすめトラックリストを取得。
      *
-     * @return おすすめトラック
+     * @return おすすめトラックリスト
      */
     @GetMapping("/recommendations")
     public ResponseEntity<List<Map<String, Object>>> getRecommendations() {
-        logger.info("GET /mock/recommendations called");
+        logger.debug("おすすめトラックリスト取得リクエスト");
         List<Map<String, Object>> response = mockSpotifyService.getRecommendationsMockData();
         return createOkResponse(response);
     }
 
     /**
-     * トラックのAudio Featuresを取得する。
+     * 複数のトラックのオーディオフィーチャーズを取得。
      *
-     * @param trackIds トラックIDのリスト
-     * @return トラックのAudio Features
+     * @param trackIds トラックIDリスト
+     * @return トラックIDとオーディオフィーチャーズのリスト
      */
     @GetMapping("/tracks/audio-features")
-    public ResponseEntity<List<Map<String, Object>>> getAudioFeaturesForTracks(@RequestParam List<String> trackIds) {
-        logger.info("GET /mock/tracks/audio-features called with trackIds: {}", trackIds);
+    public ResponseEntity<List<Map<String, Object>>> getAudioFeaturesForTracks(@RequestParam("trackIds") List<String> trackIds) {
+        logger.debug("AudioFeatures取得リクエスト: trackIds={}", trackIds);
         List<Map<String, Object>> response = mockSpotifyService.getAudioFeaturesForTracksMockData(trackIds);
         return createOkResponse(response);
     }
 
     /**
-     * ユーザーのプレイリストを取得する。
+     * ユーザーのフォロー済みプレイリストを取得。
      *
-     * @return ユーザーのプレイリスト
+     * @return ユーザーのフォロー済みプレイリスト
      */
     @GetMapping("/following/playlists")
     public ResponseEntity<List<Map<String, Object>>> getUserPlaylists() {
-        logger.info("GET /mock/following/playlists called");
+        logger.debug("ユーザープレイリスト取得リクエスト");
         List<Map<String, Object>> response = mockSpotifyService.getFollowedPlaylistsMockData();
         return createOkResponse(response);
     }
 
     /**
-     * 指定されたボディを含む、ステータスコード 200 (OK) の ResponseEntity を作成する。
+     * HTTPステータスコード200 (OK) のレスポンスEntityを作成。
      *
      * @param body レスポンスボディ
      * @param <T>  レスポンスボディの型
-     * @return ステータスコード 200 の ResponseEntity
+     * @return HTTPステータスコード200のレスポンスEntity
      */
     private <T> ResponseEntity<T> createOkResponse(T body) {
         return ResponseEntity.ok(body);
