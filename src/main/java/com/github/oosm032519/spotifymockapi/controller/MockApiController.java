@@ -79,9 +79,9 @@ public class MockApiController {
     }
 
     /**
-     * おすすめのトラックを取得する。
+     * おすすめトラックを取得する。
      *
-     * @return おすすめのトラック
+     * @return おすすめトラック
      */
     @GetMapping("/recommendations")
     public ResponseEntity<List<Map<String, Object>>> getRecommendations() {
@@ -91,10 +91,10 @@ public class MockApiController {
     }
 
     /**
-     * トラックのオーディオ特徴量を取得する。
+     * トラックのAudio Featuresを取得する。
      *
      * @param trackIds トラックIDのリスト
-     * @return トラックのオーディオ特徴量
+     * @return トラックのAudio Features
      */
     @GetMapping("/tracks/audio-features")
     public ResponseEntity<List<Map<String, Object>>> getAudioFeaturesForTracks(@RequestParam List<String> trackIds) {
