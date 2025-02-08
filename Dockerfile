@@ -1,5 +1,5 @@
-# ベースイメージとしてOpenJDK 17を使用
-FROM openjdk:17-jdk-slim
+# ベースイメージとしてOpenJDK 21を使用
+FROM openjdk:21-jdk-slim
 
 # アプリケーションのJARファイルをコンテナにコピー
 COPY target/spotify-mock-api-0.0.1-SNAPSHOT.jar app.jar
