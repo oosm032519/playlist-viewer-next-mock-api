@@ -2,8 +2,7 @@
 FROM openjdk:17-jdk-slim
 
 # アプリケーションのJARファイルをコンテナにコピー
-ARG JAR_FILE=target/spotify-mock-api-0.0.1-SNAPSHOT.jar
-COPY ${JAR_FILE} app.jar
+COPY target/spotify-mock-api-0.0.1-SNAPSHOT.jar app.jar
 
 # アプリケーションの実行ポートを指定
 EXPOSE 8081
