@@ -2,6 +2,7 @@ package com.github.oosm032519.spotifymockapi.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -13,6 +14,7 @@ import static org.mockito.Mockito.*;
 
 class MockPlaylistServiceTest {
 
+    @InjectMocks
     private MockPlaylistService mockPlaylistService;
 
     @Mock
@@ -21,11 +23,10 @@ class MockPlaylistServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        mockPlaylistService = new MockPlaylistService(mockTrackService);
     }
 
     @Test
-    void testGetPlaylistSearchMockData() {
+    void givenQueryAndOffsetAndLimit_whenGetPlaylistSearchMockData_thenReturnsMockData() {
         // Arrange
         String query = "Sample Query";
         int offset = 0;
@@ -42,7 +43,7 @@ class MockPlaylistServiceTest {
     }
 
     @Test
-    void testGetPlaylistDetailsMockData() {
+    void givenPlaylistId_whenGetPlaylistDetailsMockData_thenReturnsMockData() {
         // Arrange
         String playlistId = "mockPlaylistId001";
 
@@ -58,7 +59,7 @@ class MockPlaylistServiceTest {
     }
 
     @Test
-    void testGetPlaylistTracksMockData() {
+    void givenPlaylistId_whenGetPlaylistTracksMockData_thenReturnsMockData() {
         // Arrange
         String playlistId = "mockPlaylistId002";
         when(mockTrackService.generateRandomDurationMs(anyString())).thenReturn(200000); // Mock Track Service
@@ -77,7 +78,7 @@ class MockPlaylistServiceTest {
     }
 
     @Test
-    void testGetFollowedPlaylistsMockData() {
+    void whenGetFollowedPlaylistsMockData_thenReturnsMockData() {
         // Act
         List<Map<String, Object>> result = mockPlaylistService.getFollowedPlaylistsMockData();
 
